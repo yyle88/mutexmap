@@ -37,8 +37,8 @@ func (a *Map[K, V]) Delete(k K) {
 }
 
 func (a *Map[K, V]) Len() int {
-	a.mutex.Lock()
-	defer a.mutex.Unlock()
+	a.mutex.RLock()
+	defer a.mutex.RUnlock()
 	return len(a.mp)
 }
 
@@ -58,7 +58,7 @@ func (a *Map[K, V]) GetOrzSet(k K, newValue func() V) (v V, created bool) {
 		return v, false
 	}
 	//当内容确实是不在map里时，即首次占用写锁时，这才创建新对象，设置到map里
-	v = newValue()
+	v = newValue() // this func maybe always cost a lot of time 假如你非常介意这个的话这个包里还有另一个cache能用
 	a.mp[k] = v
 	return v, true
 }
