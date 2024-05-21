@@ -1,7 +1,6 @@
 package mutexmapcache
 
 import (
-	"fmt"
 	"math/rand/v2"
 	"testing"
 
@@ -20,7 +19,7 @@ func TestNewMap(t *testing.T) {
 		return num, nil
 	}
 	for idx := 0; idx < 10; idx++ {
-		t.Log(fmt.Sprintf("(%d)", idx))
+		t.Log("(", idx, ")")
 		const constK = "abc"
 		res1, erx1 := cache.GetOrzSet(constK, calc)
 		t.Log(res1, erx1)
@@ -56,7 +55,7 @@ func TestMap_SetVE(t *testing.T) {
 		return num, nil
 	}
 	for idx := 0; idx < 10; idx++ {
-		t.Log(fmt.Sprintf("(%d)", idx))
+		t.Log("(", idx, ")")
 		const constK = "abc"
 		var res0 = rand.IntN(100)
 		var erx0 error
