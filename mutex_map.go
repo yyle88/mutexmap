@@ -42,6 +42,16 @@ func (a *Map[K, V]) Len() int {
 	return len(a.mp)
 }
 
+func (a *Map[K, V]) Range(run func(k K, v V) bool) {
+	a.mutex.RLock()
+	defer a.mutex.RUnlock()
+	for k, v := range a.mp {
+		if ok := run(k, v); !ok {
+			return
+		}
+	}
+}
+
 // GetOrzSet get a value, if value is not exist, then create an object and set into map.
 // return value, and created(true). if exist return not created(false).
 // so when already exist do not change the value, return the old value.

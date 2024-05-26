@@ -125,3 +125,13 @@ func (a *Map[K, V]) Len() int {
 	defer a.mutex.RUnlock()
 	return len(a.mp)
 }
+
+func (a *Map[K, V]) Range(run func(k K, v V, erx error, done bool) bool) {
+	a.mutex.RLock()
+	defer a.mutex.RUnlock()
+	for k, v := range a.mp {
+		if ok := run(k, v.res, v.erx, v.done); !ok {
+			return
+		}
+	}
+}
