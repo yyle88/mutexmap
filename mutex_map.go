@@ -52,11 +52,11 @@ func (a *Map[K, V]) Range(run func(k K, v V) bool) {
 	}
 }
 
-// GetOrzSet get a value, if value is not exist, then create an object and set into map.
+// Getset get a value, if value is not exist, then create an object and set into map.
 // return value, and created(true). if exist return not created(false).
 // so when already exist do not change the value, return the old value.
 // Orz means "or" but "or" is too ugly, more ugly than ugly. So I use Orz instead of it.
-func (a *Map[K, V]) GetOrzSet(k K, newValue func() V) (v V, created bool) {
+func (a *Map[K, V]) Getset(k K, createNewValue func() V) (v V, created bool) {
 	if v, ok := a.Get(k); ok {
 		return v, false
 	}
@@ -68,7 +68,7 @@ func (a *Map[K, V]) GetOrzSet(k K, newValue func() V) (v V, created bool) {
 		return v, false
 	}
 	//当内容确实是不在map里时，即首次占用写锁时，这才创建新对象，设置到map里
-	v = newValue() // this func maybe always cost a lot of time 假如你非常介意这个的话这个包里还有另一个cache能用
+	v = createNewValue() // this func maybe always cost a lot of time 假如你非常介意这个的话这个包里还有另一个cache能用
 	a.mp[k] = v
 	return v, true
 }

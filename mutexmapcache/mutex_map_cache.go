@@ -53,12 +53,12 @@ func (a *Map[K, V]) SetVE(k K, v V, erx error) {
 	}
 }
 
-// GetOrzSet get a value, if value is not exist, then create an object and set into map.
+// Getset get a value, if value is not exist, then create an object and set into map.
 // when not exist call the newValue to create new value and put it in to map as cache.
 // not lock all the map during call newValue even newValue is very slow and waste time.
 // so when already exist do not change the value, return the old value.
 // Orz means "or" but "or" is too ugly, more ugly than ugly. So I use Orz instead of it.
-func (a *Map[K, V]) GetOrzSet(k K, newValue func() (V, error)) (V, error) {
+func (a *Map[K, V]) Getset(k K, newValue func() (V, error)) (V, error) {
 	if res, erx, done := a.Get(k); done {
 		return res, erx
 	}

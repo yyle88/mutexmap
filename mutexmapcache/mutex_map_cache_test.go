@@ -21,9 +21,9 @@ func TestNewMap(t *testing.T) {
 	for idx := 0; idx < 10; idx++ {
 		t.Log("(", idx, ")")
 		const constK = "abc"
-		res1, erx1 := cache.GetOrzSet(constK, calc)
+		res1, erx1 := cache.Getset(constK, calc)
 		t.Log(res1, erx1)
-		res2, erx2 := cache.GetOrzSet(constK, calc)
+		res2, erx2 := cache.Getset(constK, calc)
 		t.Log(res2, erx2)
 
 		if erx1 != nil || erx2 != nil {
@@ -65,7 +65,7 @@ func TestMap_SetVE(t *testing.T) {
 		}
 		cache.SetVE(constK, res0, erx0)
 
-		res1, erx1 := cache.GetOrzSet(constK, calc)
+		res1, erx1 := cache.Getset(constK, calc)
 		t.Log(res1, erx1)
 
 		if erx0 != nil || erx1 != nil {
@@ -75,7 +75,7 @@ func TestMap_SetVE(t *testing.T) {
 		}
 		require.Equal(t, res0, res1)
 
-		res2, erx2 := cache.GetOrzSet(constK, calc)
+		res2, erx2 := cache.Getset(constK, calc)
 		t.Log(res2, erx2)
 
 		if erx1 != nil || erx2 != nil {
