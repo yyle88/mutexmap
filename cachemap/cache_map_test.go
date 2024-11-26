@@ -1,4 +1,4 @@
-package mutexmapcache
+package cachemap
 
 import (
 	"math/rand/v2"
@@ -44,7 +44,7 @@ func TestNewMap(t *testing.T) {
 	}
 }
 
-func TestMap_SetVE(t *testing.T) {
+func TestMap_SetKve(t *testing.T) {
 	cache := NewMap[string, int](100)
 
 	calc := func() (int, error) {
@@ -63,7 +63,7 @@ func TestMap_SetVE(t *testing.T) {
 			res0 = -1
 			erx0 = errors.New("wrong")
 		}
-		cache.SetVE(constK, res0, erx0)
+		cache.SetKve(constK, res0, erx0)
 
 		res1, erx1 := cache.Getset(constK, calc)
 		t.Log(res1, erx1)
