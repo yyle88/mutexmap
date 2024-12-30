@@ -115,10 +115,24 @@ func main() {
 
 ---
 
-## Contributing
+## License
 
-Welcome to submit issues or requests for improvements!
+`mutexmap` is open-source and released under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
----  
+---
 
-If you find this package valuable, give it a ⭐ on GitHub! Thank you for your support!!!
+## Support
+
+Welcome to contribute to this project by submitting pull requests or reporting issues.
+
+If you find this package helpful, give it a star on GitHub!
+
+**Thank you for your support!**
+
+**Happy Coding with `mutexmap`!** 🎉
+
+Give me stars. Thank you!!!
+
+## Starring
+
+[![starring](https://starchart.cc/yyle88/mutexmap.svg?variant=adaptive)](https://starchart.cc/yyle88/mutexmap)
