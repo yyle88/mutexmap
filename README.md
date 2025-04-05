@@ -22,7 +22,7 @@ Key highlights:
 - **Efficient Reads**: Read operations (`Get`, `Range`) are lock-free for other readers.
 - **Synchronous Write**: Write operations (`Set`, `Delete`, `Getset`) are synchronous.
 
-This package is ideal for use cases requiring frequent reads and occasional writes with a shared map.
+This package is suitable for use cases requiring frequent reads and occasional writes with a shared map.
 
 ## Installation
 
