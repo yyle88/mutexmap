@@ -4,7 +4,7 @@ import (
 	"sync"
 
 	"github.com/pkg/errors"
-	"github.com/yyle88/mutexmap"
+	"github.com/yyle88/mutexmap/internal/utils"
 )
 
 type Map[K comparable, V any] struct {
@@ -48,7 +48,7 @@ func (a *Map[K, V]) SetKv(k K, v V) {
 }
 
 func (a *Map[K, V]) SetKe(k K, err error) {
-	a.SetVe(k, mutexmap.Zero[V](), err)
+	a.SetVe(k, utils.Zero[V](), err)
 }
 
 func (a *Map[K, V]) SetVe(k K, v V, err error) {
@@ -112,8 +112,8 @@ func (a *Map[K, V]) setBottle(k K) (*valueBottle[V], *sync.RWMutex) {
 		vx = &valueBottle[V]{ //创建个空壳数据
 			mutex: &sync.RWMutex{},
 			done:  false,
-			res:   mutexmap.Zero[V](), // no need to set zero value
-			err:   nil,                // no need to set none value
+			res:   utils.Zero[V](), // no need to set zero value
+			err:   nil,             // no need to set none value
 		}
 		a.mp[k] = vx
 		vx.mutex.Lock() //把这个壳给锁住，再开始计算数据，这时map的锁即可释放，而元素的锁将生效以确保需要同样元素的请求都得等待后面运算结束，即等待元素的释放锁

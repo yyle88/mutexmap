@@ -1,6 +1,10 @@
 package mutexmap
 
-import "sync"
+import (
+	"sync"
+
+	"github.com/yyle88/mutexmap/internal/utils"
+)
 
 // Map provides a thread-safe map implementation using a sync.RWMutex.
 // Map 提供了一个使用 sync.RWMutex 的线程安全 map 实现。
@@ -26,7 +30,7 @@ func (a *Map[K, V]) Get(k K) (V, bool) {
 	if v, ok := a.mp[k]; ok {
 		return v, ok
 	} else {
-		return Zero[V](), false // Explicitly return zero value if not found. 未找到时显式返回零值。
+		return utils.Zero[V](), false // Explicitly return zero value if not found. 未找到时显式返回零值。
 	}
 }
 
