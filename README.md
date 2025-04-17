@@ -133,6 +133,6 @@ If you find this package helpful, give it a star on GitHub!
 
 Give me stars. Thank you!!!
 
-## Starring
+## GitHub Stars
 
 [![starring](https://starchart.cc/yyle88/mutexmap.svg?variant=adaptive)](https://starchart.cc/yyle88/mutexmap)

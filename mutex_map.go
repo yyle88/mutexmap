@@ -13,6 +13,12 @@ type Map[K comparable, V any] struct {
 	mutex *sync.RWMutex // Mutex for synchronizing access. 用于同步访问的互斥锁。
 }
 
+// New creates a new thread-safe map.
+// New 创建线程安全 map。
+func New[K comparable, V any]() *Map[K, V] {
+	return NewMap[K, V](8)
+}
+
 // NewMap creates a new thread-safe map.
 // NewMap 创建线程安全 map。
 func NewMap[K comparable, V any](cap int) *Map[K, V] {
